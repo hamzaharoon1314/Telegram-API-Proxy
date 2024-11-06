@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Telegram API Gateway</title>
+    <title>درگاه امن API تلگرام</title>
     <style>
         * {
             margin: 0;
@@ -19,6 +19,7 @@
             min-height: 100vh;
             background: #1a1a1a;
             color: #ffffff;
+            direction: rtl;
         }
 
         .container {
@@ -62,8 +63,53 @@
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 2rem;
+            text-align: right;
+            border-right: 4px solid #61dafb;
+        }
+
+        .api-container {
+            display: flex;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            gap: 10px;
+        }
+
+        .api-url {
+            flex-grow: 1;
             text-align: left;
-            border-left: 4px solid #61dafb;
+            direction: ltr;
+            word-break: break-all;
+            color: #61dafb;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+
+        .copy-button {
+            background: #61dafb;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .copy-button:hover {
+            background: #4fa8d5;
+            transform: translateY(-1px);
+        }
+
+        .copy-button:active {
+            transform: translateY(1px);
+        }
+
+        .copy-button.copied {
+            background: #2ecc71;
         }
 
         .creator-info {
@@ -72,6 +118,8 @@
             border-top: 1px solid #3d3d3d;
             font-size: 0.9rem;
             color: #888;
+            direction: ltr;
+            text-align: center;
         }
 
         .creator-info a {
@@ -97,15 +145,41 @@
 </head>
 <body>
     <div class="container">
-        <h1>Secure Telegram API Gateway</h1>
-        <div class="status-badge">System Online</div>
+        <h1>درگاه امن API تلگرام</h1>
+        <div class="status-badge">سیستم فعال است</div>
         <div class="instruction">
-            <p>✨ Welcome to your secure Telegram API proxy service. This gateway is fully operational and ready to process your API requests securely and efficiently.</p>
+            <p>✨ به سرویس پروکسی امن API تلگرام خوش آمدید. این درگاه با قدرت و پایداری بالا، آماده ارائه خدمات API به شما می‌باشد.</p>
+            <p>🟢 ویژگی‌های این سرویس:</p>
+            <ul style="list-style-type: none; padding-right: 1rem;">
+                <li>✓ بدون محدودیت در تعداد کاربر و درخواست‌های API</li>
+                <li>✓ پایداری 100% در برابر اختلالات شبکه و فیلترینگ</li>
+                <li>✓ امنیت بالا در انتقال داده‌ها</li>
+            </ul>
         </div>
-        <p>Simply replace the standard Telegram API URL with this service's URL in your requests to begin using the service.</p>
+        <p>برای شروع استفاده از سرویس، URL زیر را جایگزین آدرس استاندارد API تلگرام نمایید:</p>
+        <div class="api-container">
+            <div class="api-url" id="apiUrl">https://telegram-api-proxy-boursextreme.pages.dev/api/bot</div>
+            <button class="copy-button" onclick="copyToClipboard()">کپی آدرس</button>
+        </div>
         <div class="creator-info">
             Engineered by: <a href="https://t.me/BourseXtreme" target="_blank">BourseXtreme</a> (Anonymous)
         </div>
     </div>
+
+    <script>
+        function copyToClipboard() {
+            const url = document.getElementById('apiUrl').textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const button = document.querySelector('.copy-button');
+                button.textContent = 'کپی شد!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = 'کپی آدرس';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
