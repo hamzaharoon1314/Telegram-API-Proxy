@@ -1,36 +1,76 @@
 # Telegram API Proxy
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/username/Telegram-API-Proxy/blob/main/LICENSE" target="_blank">
-    <img alt="License: GPL-3.0" src="https://img.shields.io/badge/License-GPL--3.0-yellow.svg" />
-  </a>
-</p>
+![Version](https://img.shields.io/badge/version-2.0-blue.svg?cacheSeconds=2592000)
+![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-yellow.svg)
 
-## درگاه امن API تلگرام
+A Cloudflare-based solution for accessing the Telegram API without VPN in regions where it's restricted.
 
-> ✨ به سرویس پروکسی امن API تلگرام خوش آمدید.
+## Overview
 
-این درگاه با قدرت و پایداری بالا، آماده ارائه خدمات API به شما می‌باشد.
+This project provides a secure and reliable proxy for the Telegram Bot API that works in regions where access to the official Telegram API might be restricted. The proxy is hosted on Cloudflare Pages, ensuring high availability and performance.
 
-> 🔘 ویژگی‌های این سرویس:
+## Features
 
-✓ بدون محدودیت در تعداد کاربر و درخواست‌های API
-✓ پایداری 100% در برابر اختلالات شبکه و فیلترینگ
-✓ امنیت بالا در انتقال داده‌ها
+- Unlimited users and API requests
+- High stability against network disruptions and filtering
+- Secure data transmission
+- Easy integration with existing code
 
-> استفاده آنلاین
+## How to Use
 
-برای استفاده از Telegram API Proxy، به این آدرس مراجعه کنید:
+Replace the standard Telegram API URL (`https://api.telegram.org/bot`) with:
 
-[https://telegram-api-proxy-anonymous.pages.dev/public](https://telegram-api-proxy-anonymous.pages.dev/public)
+```
+https://telegram-api-proxy-anonymous.pages.dev/api/bot
+```
 
-## مجوز
+### Example in JavaScript
 
-این پروژه تحت مجوز [GPL-3.0](https://github.com/username/Telegram-API-Proxy/blob/main/LICENSE) منتشر شده است.
+```javascript
+const Http = new XMLHttpRequest();
+let botToken = "YOUR_BOT_TOKEN";
+let ChatID = "YOUR_CHAT_ID";
+let message = "Hello World";
 
-## نویسنده
+var url = 'https://telegram-api-proxy-anonymous.pages.dev/api/bot' + botToken + 
+          '/sendMessage?text=' + message + 
+          '&chat_id=' + ChatID;
+
+Http.open("GET", url);
+Http.send();
+```
+
+### Example in Python
+
+```python
+import requests
+
+def send_telegram_message(message):
+    token = "YOUR_BOT_TOKEN"
+    chat_id = "YOUR_CHAT_ID"
+    url = f"https://telegram-api-proxy-anonymous.pages.dev/api/bot{token}/sendMessage"
+    
+    payload = {
+        "text": message,
+        "chat_id": chat_id
+    }
+    
+    response = requests.get(url, params=payload)
+    return response.json()
+```
+
+## Online Demo
+
+You can access the web interface at:
+
+[https://telegram-api-proxy-anonymous.pages.dev/](https://telegram-api-proxy-anonymous.pages.dev/)
+
+## License
+
+This project is licensed under the [GPL-3.0](LICENSE) License.
+
+## Author
 
 **Anonymous**
 
-* تلگرام: [@BXAMbot](https://t.me/BXAMbot)
+* Telegram: [@BXAMbot](https://t.me/BXAMbot)
