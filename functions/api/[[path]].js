@@ -1,5 +1,3 @@
-//Anonymous
-
 const URL_PATH_REGEX = /^\/bot(?<bot_token>[^/]+)\/(?<api_method>[a-zA-Z0-9_]+)/i;
 
 const RATE_LIMITS = {
