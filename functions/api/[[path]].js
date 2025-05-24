@@ -39,6 +39,8 @@ export async function onRequest(context) {
     const { request, env } = context;
     
     try {
+        cleanupExpiredData();
+        
         const securityCheck = await performSecurityChecks(request, env);
         if (securityCheck.blocked) {
             return createErrorResponse(securityCheck.reason, securityCheck.status);
@@ -77,6 +79,25 @@ export async function onRequest(context) {
         console.error('Proxy error:', error);
         requestStats.errors++;
         return handleProxyError(error);
+    }
+}
+
+function cleanupExpiredData() {
+    const now = Date.now();
+    
+    for (const [token, data] of tokenValidationCache.entries()) {
+        if (now >= data.expires) {
+            tokenValidationCache.delete(token);
+        }
+    }
+    
+    if (now - requestStats.lastReset > 3600000) {
+        requestStats = {
+            total: 0,
+            errors: 0,
+            rateLimited: 0,
+            lastReset: now
+        };
     }
 }
 
@@ -416,22 +437,3 @@ function handleProxyError(error) {
         })
     });
 }
-
-setInterval(() => {
-    const now = Date.now();
-    
-    for (const [token, data] of tokenValidationCache.entries()) {
-        if (now >= data.expires) {
-            tokenValidationCache.delete(token);
-        }
-    }
-    
-    if (now - requestStats.lastReset > 3600000) {
-        requestStats = {
-            total: 0,
-            errors: 0,
-            rateLimited: 0,
-            lastReset: now
-        };
-    }
-}, 300000);
