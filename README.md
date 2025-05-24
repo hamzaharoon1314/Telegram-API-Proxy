@@ -1,6 +1,6 @@
 # Telegram API Proxy
 
-![Version](https://img.shields.io/badge/version-3.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-4.0-blue.svg?cacheSeconds=2592000)
 ![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-yellow.svg)
 
 A Cloudflare-based solution for accessing the Telegram API without VPN in regions where it's restricted.
