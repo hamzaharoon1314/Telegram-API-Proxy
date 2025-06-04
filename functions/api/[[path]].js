@@ -17,7 +17,7 @@ const CACHE_TTL = 300000;
 
 const ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'];
 const MAX_BODY_SIZE = 50 * 1024 * 1024;
-const ALLOWED_COUNTRIES = ['PK'];
+const ALLOWED_COUNTRIES = [];
 const BLOCKED_COUNTRIES = [];
 const ALLOWED_USER_AGENTS = /telegram|bot|curl|postman|httpie/i;
 
@@ -117,11 +117,11 @@ async function performSecurityChecks(request, env) {
 
     if (ALLOWED_COUNTRIES.length > 0) {
         if (!ALLOWED_COUNTRIES.includes(country)) {
-            return { blocked: true, reason: 'Geographic restriction', status: 403, country: country };
+            return { blocked: true, reason: 'Geographic restriction', status: 403};
         }
     } else if (BLOCKED_COUNTRIES.length > 0) {
         if (BLOCKED_COUNTRIES.includes(country)) {
-            return { blocked: true, reason: 'Geographic restriction', status: 403, country: country };
+            return { blocked: true, reason: 'Geographic restriction', status: 403};
         }
     }
 
