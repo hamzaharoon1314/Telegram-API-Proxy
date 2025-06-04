@@ -1,4 +1,4 @@
-# Telegram API Proxy for all countries
+# Telegram API Proxy for all countries - FORK
 
 ![Version](https://img.shields.io/badge/version-4.0-blue.svg?cacheSeconds=2592000)
 ![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-yellow.svg)
@@ -64,13 +64,3 @@ def send_telegram_message(message):
 You can access the web interface at:
 
 [https://hamo-telegram-proxy.pages.dev/](https://hamo-telegram-proxy.pages.dev/)
-
-## License
-
-This project is licensed under the [GPL-3.0](LICENSE) License.
-
-## Author
-
-**Anonymous**
-
-* Telegram: [@BXAMbot](https://t.me/BXAMbot)
